@@ -1,3 +1,5 @@
+// This can be used what it does is reads the whole input at once and then iterates over it, takes
+// memory but is super fast
 #![allow(dead_code)]
 use std::io::{self, Read};
 

@@ -1,3 +1,4 @@
+// Please don't use this incredibly slow due to a lot of heap allocations
 #![allow(dead_code)]
 use std::io::{self, BufRead};
 
