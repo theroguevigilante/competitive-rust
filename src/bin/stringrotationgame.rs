@@ -1,8 +1,5 @@
 #![allow(dead_code)]
-use std::{
-    collections::HashSet,
-    io::{self, Read},
-};
+use std::io::{self, Read};
 
 struct Scanner<'a> {
     input: &'a str,
@@ -47,17 +44,21 @@ impl<'a> Scanner<'a> {
 }
 
 fn solve(cin: &mut Scanner) {
-    let _: i32 = cin.next();
+    let n: usize = cin.next();
     let word: String = cin.next();
-    let d: HashSet<char> = word.chars().collect();
-    if d.len() == word.len() {
-        println!("{}",word.len());
+    let bytes = word.as_bytes();
+    let mut current = bytes[0];
+    let mut score = 1;
+    for i in bytes {
+        if *i != current {
+            score += 1;
+            current = *i;
+        }
     }
-    else if d.len()==1 {
-        println!("{}", 1);
-    }
-    else {
-        println!("{}",d.len()+1);
+    if word.len() == score || bytes[0] == bytes[n - 1] {
+        println!("{score}");
+    } else {
+        println!("{}", score + 1);
     }
 }
 
