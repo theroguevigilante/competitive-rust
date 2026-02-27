@@ -1,5 +1,6 @@
 // The simplest and best one yet
 #![allow(dead_code)]
+use std::io::{self, Read};
 use std::str::SplitAsciiWhitespace;
 
 struct Scanner<'a> {
@@ -18,6 +19,10 @@ impl<'a> Scanner<'a> {
     }
 }
 
-fn solve() {}
+fn solve(stdin: &mut Scanner) {}
 
-fn main() {}
+fn main() {
+    let mut input = String::new();
+    io::stdin().lock().read_to_string(&mut input).unwrap();
+    let mut stdin = Scanner::new(&input);
+}
