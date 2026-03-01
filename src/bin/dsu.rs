@@ -6,9 +6,8 @@ struct DisjointSet {
 
 impl DisjointSet {
     fn new(n: usize) -> Self {
-        let mut parent = vec![0; n];
+        let mut parent = (0..n).collect();
         let mut size = vec![1; n];
-        parent.iter_mut().enumerate().for_each(|(i, val)| *val = i);
         DisjointSet { parent, size }
     }
 
