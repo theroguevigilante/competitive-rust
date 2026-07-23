@@ -2,7 +2,7 @@ enum SortVariation {
     Bubble,
     Select,
     Insert,
-    Unknown
+    Unknown,
 }
 
 impl SortVariation {
@@ -26,8 +26,10 @@ impl SortVariation {
         let length = nums.len();
         for i in 1..length {
             for j in (1..=i).rev() {
-                if nums[j] < nums[j-1] {
-                    nums.swap(j, j-1);
+                if nums[j] < nums[j - 1] {
+                    nums.swap(j, j - 1);
+                } else {
+                    break;
                 }
             }
         }
@@ -60,18 +62,10 @@ fn main() {
     let _ = std::io::stdin().read_line(&mut x);
     let x: i32 = x.trim().parse().unwrap();
     let sort = match x {
-        1 => {
-            SortVariation::Select 
-        },
-        2 => {
-            SortVariation::Insert
-        },
-        3 => {
-            SortVariation::Bubble
-        },
-        _ => {
-            SortVariation::Unknown
-        }
+        1 => SortVariation::Select,
+        2 => SortVariation::Insert,
+        3 => SortVariation::Bubble,
+        _ => SortVariation::Unknown,
     };
 
     match sort {
@@ -85,6 +79,4 @@ fn main() {
         print!("{} ", num);
     }
     println!("\n");
-
-
 }
