@@ -1,6 +1,5 @@
 // x [ 10 ] -> y [ 10005 ] -> z [9]
 
-use std::boxed::Box;
 use std::fmt::Display;
 
 struct Node<T> {
@@ -25,16 +24,15 @@ impl<T> Node<T> {
             next_node.traverse()
         }
     }
-    
+
     fn add(&mut self, value: T) {
         match &mut self.next {
             Some(next_node) => next_node.add(value),
-            None => self.next = {
-                let node = Node {
-                    value,
-                    next: None
-                };
-                Some(Box::new(node))
+            None => {
+                self.next = {
+                    let node = Node { value, next: None };
+                    Some(Box::new(node))
+                }
             }
         }
     }
