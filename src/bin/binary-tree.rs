@@ -1,7 +1,25 @@
-struct TreeNode {
-    val: i32,
-    left: Option<Box<TreeNode>>,
-    right: Option<Box<TreeNode>>,
+use std::fmt::Display;
+
+struct TreeNode<T> {
+    val: T,
+    left: Option<Box<TreeNode<T>>>,
+    right: Option<Box<TreeNode<T>>>,
+}
+
+impl<T> TreeNode<T> {
+    fn pre_order(&self)
+    where
+        T: Display,
+    {
+        print!("{} ", self.val);
+        if let Some(left) = &self.left {
+            left.pre_order();
+        }
+        if let Some(right) = &self.right {
+            right.pre_order();
+        }
+        
+    }
 }
 
 fn main() {
@@ -30,4 +48,6 @@ fn main() {
             })),
         })),
     };
+    x.pre_order();
+    println!();
 }
