@@ -26,13 +26,17 @@ impl SortVariation {
     fn insertion_sort(nums: &mut [i32]) {
         let length = nums.len();
         for i in 1..length {
+            let temp = nums[i];
+            let mut curr = i;
             for j in (1..=i).rev() {
-                if nums[j] < nums[j - 1] {
-                    nums.swap(j, j - 1);
+                if temp < nums[j - 1] {
+                    nums[j] = nums[j - 1];
+                    curr = j - 1;
                 } else {
                     break;
                 }
             }
+            nums[curr] = temp;
         }
     }
 
