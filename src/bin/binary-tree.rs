@@ -20,6 +20,32 @@ impl<T> TreeNode<T> {
         }
         
     }
+    
+    fn post_order(&self)
+    where
+        T: Display,
+    {
+        if let Some(left) = &self.left {
+            left.post_order();
+        }
+        if let Some(right) = &self.right {
+            right.post_order();
+        }
+        print!("{} ", self.val);
+    }
+    
+    fn in_order(&self)
+    where
+        T: Display,
+    {
+        if let Some(left) = &self.left {
+            left.in_order();
+        }
+        print!("{} ", self.val);
+        if let Some(right) = &self.right {
+            right.in_order();
+        }
+    }
 }
 
 fn main() {
@@ -48,6 +74,41 @@ fn main() {
             })),
         })),
     };
+    let y = TreeNode {
+        val: 8,
+        left: Some(Box::new(TreeNode {
+            val: 4,
+            left: Some(Box::new(TreeNode {
+                val: 2,
+                left: None,
+                right: None,
+            })),
+            right: Some(Box::new(TreeNode {
+                val: 6,
+                left: None,
+                right: None,
+            })),
+        })),
+        right: Some(Box::new(TreeNode {
+            val: 12,
+            left: Some(Box::new(TreeNode {
+                val: 10,
+                left: None,
+                right: None,
+            })),
+            right: Some(Box::new(TreeNode {
+                val: 14,
+                left: None,
+                right: None,
+            })),
+        })),
+    };
     x.pre_order();
+    println!();
+    x.post_order();
+    println!();
+    x.in_order();
+    println!();
+    y.in_order();
     println!();
 }
